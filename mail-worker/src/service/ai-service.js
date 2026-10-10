@@ -81,9 +81,10 @@ const aiService = {
 			const text = emailUtils.formatText(email.text || '');
 			const htmlText = emailUtils.htmlToText(email.html || '');
 			const body = (htmlText || text).slice(0, 6000);
-
+			console.log("body:", body, "subject:", subject);
+			
 			if (!subject && !body) {
-				return '';
+				return '0';
 			}
 
 			const result = await ai.run(c.env.ai_model || '@cf/meta/llama-3.1-8b-instruct-fast', {
@@ -101,21 +102,23 @@ const aiService = {
 				temperature: 0,
 				max_tokens: 512,
 			});
+			console.log("result:", result);
+			
 
 			const content = typeof result === 'string' ? result : result?.response || '';
 			const json = typeof content === 'string' ? JSON.parse(content) : content;
 			if (typeof json.code !== 'string') {
-				return '';
+				return '1';
 			}
 
 			if (json.code.length > 8 || /\s/.test(json.code)) {
-				return '';
+				return '2';
 			}
 
 			return json.code;
 		} catch (e) {
 			console.error('概要失败: ', e);
-			return '';
+			return '3';
 		}
 	},
 };
