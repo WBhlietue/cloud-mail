@@ -111,9 +111,6 @@ const aiService = {
 				return '1';
 			}
 
-			if (json.code.length > 8 || /\s/.test(json.code)) {
-				return '2';
-			}
 
 			return json.code;
 		} catch (e) {
