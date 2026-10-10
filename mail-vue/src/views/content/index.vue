@@ -30,7 +30,6 @@
                   <span class="send-name-title">{{ email.code }}</span>
                 </div>
               </div>
-              {console.log(email)}
               <div class="send"><span class="send-source">{{$t('summary')}}</span>
                 <div class="send-name">
                   <span class="send-name-title">{{ email.summary }}</span>
@@ -118,6 +117,8 @@ const email = computed(() => emailStore.contentData.email || {
 })
 const showPreview = ref(false)
 const srcList = reactive([])
+
+console.log(email)
 
 const { t } = useI18n()
 watch(() => accountStore.currentAccountId, () => {
