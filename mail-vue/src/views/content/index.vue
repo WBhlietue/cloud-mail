@@ -30,6 +30,7 @@
                   <span class="send-name-title">{{ email.code }}</span>
                 </div>
               </div>
+              {console.log(email)}
               <div class="send"><span class="send-source">{{$t('summary')}}</span>
                 <div class="send-name">
                   <span class="send-name-title">{{ email.summary }}</span>
