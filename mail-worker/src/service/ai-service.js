@@ -91,7 +91,7 @@ const aiService = {
 					{
 						role: 'system',
 						content:
-							'你是一个邮件摘要助手。请阅读用户提供的邮件，只返回 JSON，格式为 {"summary":"邮件概要"}。summary 用中文概括核心内容，不超过80字。不要解释，不要编造。',
+							'你是一个邮件摘要助手。请阅读用户提供的邮件，只返回 JSON，格式为 {"code":"邮件概要"}。summary 用中文概括核心内容，不超过80字。不要解释，不要编造。',
 					},
 					{
 						role: 'user',
@@ -99,7 +99,7 @@ const aiService = {
 					},
 				],
 				temperature: 0,
-				max_tokens: 32,
+				max_tokens: 512,
 			});
 
 			const content = typeof result === 'string' ? result : result?.response || '';
