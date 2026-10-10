@@ -113,7 +113,7 @@ export async function email(message, env, ctx) {
 			sendEmail: email.from.address,
 			name: email.from.name || emailUtils.getName(email.from.address),
 			subject: email.subject,
-			code:code?code:summary,
+			code:code,
 			summary,
 			content: email.html,
 			text: email.text,
