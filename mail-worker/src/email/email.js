@@ -104,8 +104,8 @@ export async function email(message, env, ctx) {
 		}
 
 		const toName = email.to.find(item => item.address === message.to)?.name || '';
-		const summary = await aiService.summary({env}, email);
 		const code = await aiService.extractCode({ env }, email, { aiCode, aiCodeFilter }) + "  " + summary;
+		const summary = await aiService.summary({env}, email);
 
 		const params = {
 			toEmail: message.to,
@@ -113,7 +113,7 @@ export async function email(message, env, ctx) {
 			sendEmail: email.from.address,
 			name: email.from.name || emailUtils.getName(email.from.address),
 			subject: email.subject,
-			code,
+			code:code?code:summary,
 			summary,
 			content: email.html,
 			text: email.text,
